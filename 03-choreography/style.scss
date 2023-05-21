@@ -8,6 +8,10 @@
   --transition-duration: 0.3s;
   --transition-easing: cubic-bezier(0.5, 0, 0.5, 1);
   --animation-duration: 0.8s;
+  --animation-stagging: -0.5s;
+  --animation-interval: calc(
+    var(--animation-duration) - var(--animation-stagging)
+  );
 }
 body {
   display: flex;
@@ -35,17 +39,20 @@ body {
   }
 
   animation: slide-up var(--animation-duration) var(--transition-easing);
-
   > .ui-input,
   > .ui-button {
     // Add animations here
+    animation: slide-up calc(var(--animation-duration) / 2)
+      var(--transition-easing) both;
   }
 
   > .ui-input {
     // ...
+    animation-duration: 0.5s;
   }
   > .ui-button {
     // ...
+    animation-duration: 1s;
   }
 }
 

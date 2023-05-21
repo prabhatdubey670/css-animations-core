@@ -5,6 +5,7 @@
   --color-blue: #1c38f1;
   --color-green: #1fcdb0;
   --input-height: 3rem;
+  --duration: 0.2s;
 }
 body {
   display: flex;
@@ -23,10 +24,28 @@ body {
   grid-template-rows: 1fr;
   grid-column-gap: 1rem;
   grid-template-areas: 'input button';
-
+  animation-name: animate-up;
+  animation-duration: 2s;
+  animation-fill-mode: both;
   --color: var(--color-gray);
   &:focus-within {
     --color: var(--color-blue);
+    transition: all var(--duration) ease;
+  }
+}
+@keyframes animate-up {
+  0% {
+    transform: translateY(50vw) translate(0vw);
+  }
+
+  33% {
+    transform: translateY(0) translateX(2vw);
+  }
+  66% {
+    transform: translateY(0) translateX(-2vw);
+  }
+  100% {
+    transform: translateX(0vw);
   }
 }
 
@@ -50,6 +69,10 @@ body {
   height: var(--input-height);
   background-color: var(--color);
   transition: inherit;
+  // transition: all 0.1s ease linear;
+  &:active {
+    transform: scale(1.06);
+  }
 }
 
 [data-show]:not([data-active]) {

@@ -1,9 +1,13 @@
 @import './styles/base.scss';
-
+:root {
+  --primary-color: orange;
+  --duration: 1s;
+  --easing: cubic-bezier(0.5, 0, 0.5, 1);
+}
 body {
   font-family: 'Open Sans', sans-serif;
   padding: 5vmin;
-  background-color: #f4f4f4;
+  background-color: var(--primary-color);
 }
 
 a {
@@ -12,6 +16,11 @@ a {
 
 h1 {
   margin: 0;
+  &:hover {
+    font-size: 10vh;
+    color: white;
+    transition: all var(--duration);
+  }
 }
 
 small {
@@ -24,8 +33,37 @@ ul {
 }
 
 .ball {
-  height: 5vmin;
-  width: 5vmin;
+  height: 6vmin;
+  width: 6vmin;
   border-radius: 50%;
-  background: radial-gradient(circle at bottom right, #fb2324, #fe932a);
+  background-color: white;
+  --duration: 1s;
+  --stagging: -0.5s;
+  --interval: calc(var(--duration) - var(--stagging));
+  animation: stagging var(--duration) calc(var(--interval) * var(--i)) both;
+}
+// @keyframes square-like {
+//   0% {
+//     transform: translateX(0);
+//   }
+//   25% {
+//     transform: translateX(5vw) translateY(0);
+//   }
+//   50% {
+//     transform: translateX(5vw) translateY(5vw);
+//   }
+//   75% {
+//     transform: translateX(0vw) translateY(5vw);
+//   }
+//   100% {
+//     transform: translateX(0vw) translateY(0vw);
+//   }
+// }
+@keyframes stagging {
+  from {
+    transform: none;
+  }
+  to {
+    transform: translateX(10vw);
+  }
 }
